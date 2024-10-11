@@ -1,9 +1,22 @@
 console.log("hi how are you")
 
-const loadAllfood =async () => {
+const loadAllfood =async (status) => {
     const res = await fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
     const data = await res.json()
-    displayAllFood(data.categories)
+    if(status){
+      displayAllFood(data.categories.slice(6,))
+      
+    }
+    else{
+      displayAllFood(data.categories.slice(0,6))
+
+    }
+   
+}
+
+
+const loadData1 = () =>{
+  loadAllfood(true)
 }
 const displayAllFood = (categories) =>{
     console.log(categories)
